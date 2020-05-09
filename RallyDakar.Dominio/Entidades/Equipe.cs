@@ -14,5 +14,13 @@ namespace RallyDakar.Dominio.Entidades
 
         public ICollection<Piloto> Pilotos { get; set; }
 
+        public bool Validado()
+        {
+            if (string.IsNullOrEmpty(Nome))
+                return false;
+
+            return true;
+        }
+
     }
 }
