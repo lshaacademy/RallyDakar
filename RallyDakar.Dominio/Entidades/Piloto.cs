@@ -11,5 +11,13 @@ namespace RallyDakar.Dominio.Entidades
         public int EquipeId { get; set; }
 
         public virtual Equipe Equipe { get; set; }
+
+        internal bool Validado()
+        {
+            if (string.IsNullOrEmpty(Nome))
+                return false;
+
+            return true;
+        }
     }
 }

@@ -17,4 +17,8 @@
     <ProjectReference Include="..\RallyDakar.Dominio\RallyDakar.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Telemetria\" />
+  </ItemGroup>
+
 </Project>

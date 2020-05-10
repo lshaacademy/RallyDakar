@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RallyDakar.Dominio.Entidades
 {
@@ -19,8 +23,25 @@ namespace RallyDakar.Dominio.Entidades
             if (string.IsNullOrEmpty(Nome))
                 return false;
 
+            if (string.IsNullOrEmpty(CodigoIdentificador))
+                return false;
+
             return true;
         }
 
+        public Equipe()
+        {
+            Pilotos = new List<Piloto>();
+        }
+        public void AdicionarPiloto(Piloto piloto)
+        {
+            if (piloto != null && piloto.Validado())
+                Pilotos.Add(piloto);
+        }
+
+        public Piloto ObterPorId(int id)
+        {
+            return Pilotos.FirstOrDefault(p => p.Id == id);
+        }
     }
 }
