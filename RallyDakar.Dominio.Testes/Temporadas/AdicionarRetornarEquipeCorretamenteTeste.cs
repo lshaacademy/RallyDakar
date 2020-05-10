@@ -22,6 +22,7 @@ namespace RallyDakar.Dominio.Testes.Temporadas
             equipe1 = new Equipe();
             equipe1.Id = 1;
             equipe1.Nome = "EquipeTeste1";
+            equipe1.CodigoIdentificador = "JKL";
 
             equipe2 = new Equipe();
             equipe2.Id = 2;
@@ -30,8 +31,16 @@ namespace RallyDakar.Dominio.Testes.Temporadas
                                 
             temporada.AdicionarEquipe(equipe1);
             temporada.AdicionarEquipe(equipe2);
+            temporada.AdicionarEquipe(equipe2);
 
             equipeRetorno = temporada.ObterPorId(equipe2.Id);
+        }
+
+
+        [TestMethod]
+        public void DuasEquipesAdicionadas()
+        {
+            Assert.IsTrue(temporada.Equipes.Count() ==2);
         }
 
         [TestMethod]

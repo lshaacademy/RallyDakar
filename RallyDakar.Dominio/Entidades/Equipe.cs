@@ -36,7 +36,10 @@ namespace RallyDakar.Dominio.Entidades
         public void AdicionarPiloto(Piloto piloto)
         {
             if (piloto != null && piloto.Validado())
-                Pilotos.Add(piloto);
+            {
+                if (!Pilotos.Any(p => p.Id == piloto.Id))
+                    Pilotos.Add(piloto);
+            }
         }
 
         public Piloto ObterPorId(int id)
