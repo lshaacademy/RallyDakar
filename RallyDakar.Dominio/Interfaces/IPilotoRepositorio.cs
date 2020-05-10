@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RallyDakar.Dominio.Interfaces
 {
-    public interface Interface1
+    public interface IPilotoRepositorio
     {
     }
 }

@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Dominio", "0 - Dominio", "{250CDB05-F56E-4B1E-A79B-85F296A58266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RallyDakar.Dominio", "RallyDakar.Dominio\RallyDakar.Dominio.csproj", "{1574D7A1-8330-4FC3-A50F-BA6150A10291}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RallyDakar.Dominio", "RallyDakar.Dominio\RallyDakar.Dominio.csproj", "{1574D7A1-8330-4FC3-A50F-BA6150A10291}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RallyDakar.Dominio.Testes", "RallyDakar.Dominio.Testes\RallyDakar.Dominio.Testes.csproj", "{A289E25F-1ABE-4871-8C7E-64284445E691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RallyDakar.Dominio.Testes", "RallyDakar.Dominio.Testes\RallyDakar.Dominio.Testes.csproj", "{A289E25F-1ABE-4871-8C7E-64284445E691}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - WEB", "1 - WEB", "{7DA904AB-F678-4950-B6BA-EB0EE9D68E83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 API", "1.1 API", "{A36BBC74-19C6-430F-9F49-507A27EB67AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RallyDakar.API", "RallyDakar.API\RallyDakar.API.csproj", "{C8A668C8-C730-4F2B-A386-899031048044}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,10 @@ Global
 		{A289E25F-1ABE-4871-8C7E-64284445E691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A289E25F-1ABE-4871-8C7E-64284445E691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A289E25F-1ABE-4871-8C7E-64284445E691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8A668C8-C730-4F2B-A386-899031048044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8A668C8-C730-4F2B-A386-899031048044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8A668C8-C730-4F2B-A386-899031048044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8A668C8-C730-4F2B-A386-899031048044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +40,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1574D7A1-8330-4FC3-A50F-BA6150A10291} = {250CDB05-F56E-4B1E-A79B-85F296A58266}
 		{A289E25F-1ABE-4871-8C7E-64284445E691} = {250CDB05-F56E-4B1E-A79B-85F296A58266}
+		{A36BBC74-19C6-430F-9F49-507A27EB67AF} = {7DA904AB-F678-4950-B6BA-EB0EE9D68E83}
+		{C8A668C8-C730-4F2B-A386-899031048044} = {A36BBC74-19C6-430F-9F49-507A27EB67AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9553ED9A-A812-452A-9C41-9AF84CB1EE41}
