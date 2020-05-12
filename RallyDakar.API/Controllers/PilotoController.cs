@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RallyDakar.Dominio.Entidades;
 using RallyDakar.Dominio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,15 @@ namespace RallyDakar.API.Controllers
 
         [HttpGet]
         public IActionResult ObterTodos()
+        {            
+            return Ok(_pilotoRepositorio.ObterTodos());            
+        }
+
+        [HttpPost]
+        public IActionResult AdicionarPiloto([FromBody]Piloto piloto)
         {
-            return Ok("Retornou com sucesso");
+            _pilotoRepositorio.Adicionar(piloto);
+            return Ok();
         }
     }
 }
