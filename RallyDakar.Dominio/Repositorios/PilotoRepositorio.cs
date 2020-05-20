@@ -1,4 +1,5 @@
-﻿using RallyDakar.Dominio.DbContexto;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using RallyDakar.Dominio.DbContexto;
 using RallyDakar.Dominio.Entidades;
 using RallyDakar.Dominio.Interfaces;
 using System.Collections.Generic;
@@ -18,6 +19,16 @@ namespace RallyDakar.Dominio.Repositorios
         {
             _rallyDbContexto.Pilotos.Add(piloto);
             _rallyDbContexto.SaveChanges();
+        }
+
+        public bool Existe(Piloto piloto)
+        {
+            return _rallyDbContexto.Pilotos.Any(p => p.Id == piloto.Id);
+        }
+
+        public Piloto Obter(int id)
+        {
+            return _rallyDbContexto.Pilotos.FirstOrDefault(p => p.Id == id);
         }
 
         public IEnumerable<Piloto> ObterTodos()
