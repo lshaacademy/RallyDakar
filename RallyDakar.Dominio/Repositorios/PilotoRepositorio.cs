@@ -28,6 +28,12 @@ namespace RallyDakar.Dominio.Repositorios
             _rallyDbContexto.SaveChanges();
         }
 
+        public void Deletar(Piloto piloto)
+        {
+            _rallyDbContexto.Pilotos.Remove(piloto);
+            _rallyDbContexto.SaveChanges();
+        }
+
         public bool Existe(int pilotoId)
         {
             return _rallyDbContexto.Pilotos.Any(p => p.Id == pilotoId);

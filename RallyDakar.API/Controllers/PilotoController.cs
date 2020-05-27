@@ -115,7 +115,14 @@ namespace RallyDakar.API.Controllers
         {
             try
             {
-                return Ok();
+                
+                var piloto = _pilotoRepositorio.Obter(id);
+                if (piloto == null)
+                    return NotFound();
+                
+                _pilotoRepositorio.Deletar(piloto);
+
+                return NoContent();
             }
             catch (Exception ex)
             {
