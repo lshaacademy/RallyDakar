@@ -80,20 +80,48 @@ namespace RallyDakar.API.Controllers
         [HttpPut]
         public IActionResult Atualizar([FromBody]Piloto piloto)
         {
-            
-            return Ok();
+            try
+            {
+                if (!_pilotoRepositorio.Existe(piloto.Id))
+                    return NotFound();
+                
+                _pilotoRepositorio.Atualizar(piloto);
+
+                return NoContent();
+
+            }catch(Exception ex)
+            {
+                //_logger.info(ex.ToString())
+                return StatusCode(500, "Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
+            }
         }
 
         [HttpPatch]
         public IActionResult AtualizarParcialmente([FromBody]Piloto piloto)
-        {            
-            return Ok();
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                //_logger.info(ex.ToString())
+                return StatusCode(500, "Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                //_logger.info(ex.ToString())
+                return StatusCode(500, "Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
+            }
         }
     }
 }
