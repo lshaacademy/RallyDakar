@@ -21,14 +21,14 @@ namespace RallyDakar.Dominio.Repositorios
             _rallyDbContexto.SaveChanges();
         }
 
-        public bool Existe(Piloto piloto)
+        public bool Existe(int pilotoId)
         {
-            return _rallyDbContexto.Pilotos.Any(p => p.Id == piloto.Id);
+            return _rallyDbContexto.Pilotos.Any(p => p.Id == pilotoId);
         }
 
-        public Piloto Obter(int id)
+        public Piloto Obter(int pilotoId)
         {
-            return _rallyDbContexto.Pilotos.FirstOrDefault(p => p.Id == id);
+            return _rallyDbContexto.Pilotos.FirstOrDefault(p => p.Id == pilotoId);
         }
 
         public IEnumerable<Piloto> ObterTodos()

@@ -22,39 +22,28 @@ namespace RallyDakar.API.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            return Ok(_pilotoRepositorio.ObterTodos());
-        }
-
-        [HttpGet("{id}", Name = "Obter")]
-        public IActionResult Obter(int id)
-        {
-            var piloto = _pilotoRepositorio.Obter(id);
-            if(piloto != null)
+            try
             {
-                return NotFound();
-            }
+                var pilotos = _pilotoRepositorio.ObterTodos();
+                if (!pilotos.Any())
+                    return NotFound();
 
-            return Ok(piloto);
+                return Ok(pilotos);
+            }
+            catch(Exception ex)
+            {
+                //return BadRequest(ex.ToString());
+                //_logger.Info(ex.toString());
+                //return BadRequest("Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
+                return StatusCode(500, "Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
+            }
         }
 
+        
         [HttpPost]
         public IActionResult AdicionarPiloto([FromBody]Piloto piloto)
         {
-            try
-            {
-                if (_pilotoRepositorio.Existe(piloto))
-                {
-                    return BadRequest("Já existe piloto com essa id cadastrada");
-                }
-
-                _pilotoRepositorio.Adicionar(piloto);
-
-                return CreatedAtRoute("Obter", new { id = piloto.Id }, piloto);
-            }catch(Exception ex)
-            {
-                //return StatusCode(500, "Ocorreu um erro interno. Por favor entre contato com o suporte");
-                return StatusCode(500, ex.ToString());
-            }
+            return Ok();
         }
 
         [HttpPut]
