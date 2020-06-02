@@ -97,12 +97,22 @@ namespace RallyDakar.API.Controllers
             }
         }
 
-        [HttpPatch]
-        public IActionResult AtualizarParcialmente([FromBody]Piloto piloto)
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarParcialmente(int id, [FromBody] JsonPatchDocument<Piloto> patchPiloto)
         {
             try
             {
-                return Ok();
+                if (!_pilotoRepositorio.Existe(id))
+                    return NotFound();
+
+                var piloto = _pilotoRepositorio.Obter(id);
+
+                patchPiloto.ApplyTo(piloto);
+
+                _pilotoRepositorio.Atualizar(piloto);
+
+                return NoContent();
+
             }
             catch (Exception ex)
             {
