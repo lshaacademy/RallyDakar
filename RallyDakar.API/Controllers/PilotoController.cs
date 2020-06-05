@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using RallyDakar.API.Modelo;
 using RallyDakar.Dominio.Entidades;
 using RallyDakar.Dominio.Interfaces;
 using System;
@@ -13,10 +15,12 @@ namespace RallyDakar.API.Controllers
     [Route("api/pilotos")]
     public class PilotoController : ControllerBase
     {
-        IPilotoRepositorio _pilotoRepositorio;
-        public PilotoController(IPilotoRepositorio pilotoRepositorio)
+        private readonly IPilotoRepositorio _pilotoRepositorio;
+        private readonly IMapper _mapper;
+        public PilotoController(IPilotoRepositorio pilotoRepositorio, IMapper mapper)
         {
             _pilotoRepositorio = pilotoRepositorio;
+            _mapper = mapper;
         }
 
        
@@ -40,10 +44,13 @@ namespace RallyDakar.API.Controllers
         }
         
         [HttpPost]
-        public IActionResult AdicionarPiloto([FromBody]Piloto piloto)
+        public IActionResult AdicionarPiloto([FromBody]PilotoModelo pilotoModelo)
         {
             try
             {
+                var piloto = _mapper.Map<Piloto>(pilotoModelo);
+                
+
                 if (_pilotoRepositorio.Existe(piloto.Id))
                     return StatusCode(409,"Já existe piloto com a mesma identificação ");
 
