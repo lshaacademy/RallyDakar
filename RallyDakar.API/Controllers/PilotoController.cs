@@ -56,7 +56,9 @@ namespace RallyDakar.API.Controllers
 
                 _pilotoRepositorio.Adicionar(piloto);
 
-                return CreatedAtRoute("Obter", new { id = piloto.Id }, piloto);
+                var pilotoModeloRetorno = _mapper.Map<PilotoModelo>(piloto);
+
+                return CreatedAtRoute("Obter", new { id = piloto.Id }, pilotoModeloRetorno);
 
             }catch(Exception ex)
             {
