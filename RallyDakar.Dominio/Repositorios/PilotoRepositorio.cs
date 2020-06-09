@@ -23,8 +23,16 @@ namespace RallyDakar.Dominio.Repositorios
 
         public void Atualizar(Piloto piloto)
         {
-            _rallyDbContexto.Attach(piloto);
-            _rallyDbContexto.Entry(piloto).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            if (_rallyDbContexto.Entry(piloto).State == Microsoft.EntityFrameworkCore.EntityState.Detached)
+            {
+                _rallyDbContexto.Attach(piloto);
+                _rallyDbContexto.Entry(piloto).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+            else
+            {
+                _rallyDbContexto.Update(piloto);
+            }
+
             _rallyDbContexto.SaveChanges();
         }
 

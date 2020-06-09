@@ -92,7 +92,7 @@ namespace RallyDakar.API.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult AtualizarParcialmente(int id, [FromBody] JsonPatchDocument<Piloto> patchPiloto)
+        public IActionResult AtualizarParcialmente(int id, [FromBody] JsonPatchDocument<PilotoModelo> patchPilotoModelo)
         {
             try
             {
@@ -101,7 +101,13 @@ namespace RallyDakar.API.Controllers
 
                 var piloto = _pilotoRepositorio.Obter(id);
 
-                patchPiloto.ApplyTo(piloto);
+                var pilotoModelo = _mapper.Map<PilotoModelo>(piloto);
+
+
+                patchPilotoModelo.ApplyTo(pilotoModelo);
+
+                piloto = _mapper.Map(pilotoModelo, piloto);
+
 
                 _pilotoRepositorio.Atualizar(piloto);
 
