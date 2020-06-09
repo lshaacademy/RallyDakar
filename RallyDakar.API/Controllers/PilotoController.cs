@@ -31,10 +31,13 @@ namespace RallyDakar.API.Controllers
             try
             {
                 var piloto = _pilotoRepositorio.Obter(id);
+                
                 if (piloto == null)
                     return NotFound();
 
-                return Ok(piloto);
+                var pilotoModelo = _mapper.Map<PilotoModelo>(piloto);
+
+                return Ok(pilotoModelo);
 
             }catch (Exception ex)
             {
@@ -68,13 +71,15 @@ namespace RallyDakar.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Atualizar([FromBody]Piloto piloto)
+        public IActionResult Atualizar([FromBody]PilotoModelo pilotoModelo)
         {
             try
             {
-                if (!_pilotoRepositorio.Existe(piloto.Id))
+                if (!_pilotoRepositorio.Existe(pilotoModelo.Id))
                     return NotFound();
-                
+
+                var piloto = _mapper.Map<Piloto>(pilotoModelo);
+
                 _pilotoRepositorio.Atualizar(piloto);
 
                 return NoContent();
