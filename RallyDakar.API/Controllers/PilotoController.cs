@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RallyDakar.API.Modelo;
 using RallyDakar.Dominio.Entidades;
 using RallyDakar.Dominio.Interfaces;
@@ -17,10 +18,11 @@ namespace RallyDakar.API.Controllers
     {
         private readonly IPilotoRepositorio _pilotoRepositorio;
         private readonly IMapper _mapper;
+       
         public PilotoController(IPilotoRepositorio pilotoRepositorio, IMapper mapper)
         {
             _pilotoRepositorio = pilotoRepositorio;
-            _mapper = mapper;
+            _mapper = mapper;       
         }
 
        
