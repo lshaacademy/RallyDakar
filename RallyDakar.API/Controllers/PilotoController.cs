@@ -18,11 +18,13 @@ namespace RallyDakar.API.Controllers
     {
         private readonly IPilotoRepositorio _pilotoRepositorio;
         private readonly IMapper _mapper;
+        private readonly ILogger<PilotoController> _logger;
        
-        public PilotoController(IPilotoRepositorio pilotoRepositorio, IMapper mapper)
+        public PilotoController(IPilotoRepositorio pilotoRepositorio, IMapper mapper, ILogger<PilotoController> logger)
         {
             _pilotoRepositorio = pilotoRepositorio;
-            _mapper = mapper;       
+            _mapper = mapper;
+            _logger = logger;
         }
 
        
@@ -53,21 +55,34 @@ namespace RallyDakar.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Mapeando piloto Modelo");
                 var piloto = _mapper.Map<Piloto>(pilotoModelo);
-                
 
+
+                _logger.LogInformation($"Verificando se existe piloto com o id informado{piloto.Id}");
                 if (_pilotoRepositorio.Existe(piloto.Id))
-                    return StatusCode(409,"Já existe piloto com a mesma identificação ");
-                               
-                _pilotoRepositorio.Adicionar(piloto);
+                {
+                    _logger.LogWarning($"Já existe piloto com a mesma identificação{piloto.Id}");
+                    return StatusCode(409, "Já existe piloto com a mesma identificação ");
+                }
 
+                int numero = int.Parse("asdadas");
+
+                _logger.LogInformation("Adicionando piloto");
+                _logger.LogInformation($"Nome Piloto:{piloto.Nome}");
+                _logger.LogInformation($"SobreNome do  Piloto:{piloto.SobreNome}");
+                _pilotoRepositorio.Adicionar(piloto);
+                _logger.LogInformation("Operação Adicionar Piloto ocorreu sem erros");
+
+                _logger.LogInformation("Mapeando o retorno");
                 var pilotoModeloRetorno = _mapper.Map<PilotoModelo>(piloto);
 
+                _logger.LogInformation("Chamando a rota Obter");
                 return CreatedAtRoute("Obter", new { id = piloto.Id }, pilotoModeloRetorno);
 
             }catch(Exception ex)
             {
-                //_logger.info(ex.ToString())
+                _logger.LogError(ex.ToString());
                 return StatusCode(500, "Ocorreu um erro interno no sistema. Por favor entre em contato com suporte");
             }
         }
