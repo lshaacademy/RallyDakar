@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace RallyDakar.API
 {
@@ -13,6 +14,11 @@ namespace RallyDakar.API
     {
         public static void Main(string[] args)
         {
+            var logger = NLogBuilder
+                            .ConfigureNLog("nlog.config")
+                            .GetCurrentClassLogger();
+
+            logger.Info("Iniciando o applicativo");
             CreateHostBuilder(args).Build().Run();
         }
 
