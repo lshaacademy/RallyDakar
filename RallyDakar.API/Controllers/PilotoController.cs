@@ -34,12 +34,12 @@ namespace RallyDakar.API.Controllers
         {
             try
             {
-                _logger.LogInformation($"Obtendo dados do piloto da base: {id}");
+                _logger.LogInformation($"Obtendo dados do piloto na base: {id}");
                 var piloto = _pilotoRepositorio.Obter(id);
 
                 if (piloto == null)
                 {
-                    _logger.LogInformation($"PilotoId: {id} não encontrado");
+                    _logger.LogWarning($"PilotoId: {id} não encontrado");
                     return NotFound();
                 }
 
@@ -70,9 +70,7 @@ namespace RallyDakar.API.Controllers
                     _logger.LogWarning($"Já existe piloto com a mesma identificação{piloto.Id}");
                     return StatusCode(409, "Já existe piloto com a mesma identificação ");
                 }
-
-                int numero = int.Parse("asdadas");
-
+                
                 _logger.LogInformation("Adicionando piloto");
                 _logger.LogInformation($"Nome Piloto:{piloto.Nome}");
                 _logger.LogInformation($"SobreNome do  Piloto:{piloto.SobreNome}");
@@ -100,7 +98,7 @@ namespace RallyDakar.API.Controllers
                 _logger.LogInformation($"Verificando se piloto: {pilotoModelo.Id} existe na base");
                 if (!_pilotoRepositorio.Existe(pilotoModelo.Id))
                 {
-                    _logger.LogInformation($"{pilotoModelo.Id} não foi encontrado");
+                    _logger.LogWarning($"{pilotoModelo.Id} não foi encontrado");
                     return NotFound();
                 }
 
@@ -132,8 +130,8 @@ namespace RallyDakar.API.Controllers
                     _logger.LogInformation($"Verificando se pilotoid {id} existe na base");
                     return NotFound();
                 }
-                
-                _logger.LogInformation($"Obtendo instancia com EFCore");
+
+                _logger.LogInformation($"Obtendo instancia com EFCore {id}");
                 var piloto = _pilotoRepositorio.Obter(id);
 
                 _logger.LogInformation($"Mapeando para modelo");
