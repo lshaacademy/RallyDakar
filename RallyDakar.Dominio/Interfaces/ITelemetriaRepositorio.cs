@@ -9,6 +9,8 @@ namespace RallyDakar.Dominio.Interfaces
     {
         void Adicionar(Telemetria telemetria);
         IEnumerable<Telemetria> ObterTodos();
+        IEnumerable<Telemetria> ObterTodosPorEquipe(int equipeId);
+        Telemetria ObterPor(int equipeId, int telemetriaId);
         Telemetria Obter(int telemetriaId);
         bool Existe(int telemetriaId);
         void Atualizar(Telemetria telemetria);

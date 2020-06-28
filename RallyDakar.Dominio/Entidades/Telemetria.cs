@@ -6,12 +6,9 @@ namespace RallyDakar.Dominio.Entidades
     {
         public int Id { get; set; }        
         public int EquipeId { get; set; }
-        public DateTime Data { get; set; }
-        public TimeSpan Hora { get; set; }
-
+        public DateTime Data { get; set; }        
         public DateTime DataServidor { get; set; }
-        public TimeSpan HoraServidor { get; set; }
-        
+                
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public decimal PercentualCombustivel { get; set; }

@@ -41,6 +41,18 @@ namespace RallyDakar.Dominio.DbContexto
                 context.Temporadas.Add(temporada);
                 context.SaveChanges();
 
+                Telemetria telemetria = new Telemetria();
+                telemetria.Id = 1;
+                telemetria.EquipeId = equipe.Id;
+                telemetria.Data = DateTime.Now;
+                telemetria.DataServidor = DateTime.Now;
+
+                context.Telemetria.Add(telemetria);
+                context.SaveChanges();
+                
+
+
+
             }
         }
     }
